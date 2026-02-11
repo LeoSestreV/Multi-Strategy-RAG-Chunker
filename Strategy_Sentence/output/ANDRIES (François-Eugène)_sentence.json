@@ -1,0 +1,46 @@
+{
+  "source_file": "ANDRIES (François-Eugène).txt",
+  "strategy": "sentence_based_chunking",
+  "timestamp": "2026-02-11T10:10:25.606075",
+  "config": {
+    "embedding_model": "nomic-embed-text",
+    "max_sentences_per_chunk": 8,
+    "max_chunk_size": 1500,
+    "min_chunk_size": 100
+  },
+  "total_chunks": 2,
+  "chunks": [
+    {
+      "text": "ANDRIES (François-Eugène), mathé- maticien, professeur à l'Université de Louvain, né à Malines, le 6 mars 1824, mort à Paris, le 21 avril 1848. Il entra comme élève à l'université de Louvain au mois d'octobre 1839, après avoir fait de brillantes études humanitaires au collège de sa ville natale. Porté par son génie naturel vers l'étude des sciences mathé- matiques, il subit avec grande distinc- tion l'examen delà candidature au mois d'avril 1844. Parmi les questions propo- sées pour le concours universitaire de 1845 , il s'en trouvait une qui présentait des difficultés particulières et qui était formulée comme suit : Rechercher les ca- ractères qui servent à reconnaître la con- vergence et la divergence des séries. An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée. Son travail, qui brille par la sagacité autant que par l'érudition, a été imprimé dans les Annales des Universités de Bel- gique. Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain, le 2 août 1846, Andries fit preuve d'un talent hors ligne par la ma- nière dont il donna le cours des mathé- matiques spéciales, en remplacement de Pagani.",
+      "start_char": 0,
+      "end_char": 1208,
+      "sentences": [
+        "ANDRIES (François-Eugène), mathé- maticien, professeur à l'Université de Louvain, né à Malines, le 6 mars 1824, mort à Paris, le 21 avril 1848.",
+        "Il entra comme élève à l'université de Louvain au mois d'octobre 1839, après avoir fait de brillantes études humanitaires au collège de sa ville natale.",
+        "Porté par son génie naturel vers l'étude des sciences mathé- matiques, il subit avec grande distinc- tion l'examen delà candidature au mois d'avril 1844.",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        ", il s'en trouvait une qui présentait des difficultés particulières et qui était formulée comme suit : Rechercher les ca- ractères qui servent à reconnaître la con- vergence et la divergence des séries.",
+        "An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée.",
+        "Son travail, qui brille par la sagacité autant que par l'érudition, a été imprimé dans les Annales des Universités de Bel- gique.",
+        "Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain, le 2 août 1846, Andries fit preuve d'un talent hors ligne par la ma- nière dont il donna le cours des mathé- matiques spéciales, en remplacement de Pagani."
+      ],
+      "coherence_score": 0.6931604146957397,
+      "sentence_count": 8
+    },
+    {
+      "text": "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction. Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848; mais la mort vint malheureusement l'y surprendre à l'âge de vingt-quatre ans : une rapide affection de poitrine le con-duisit au tombeau le 21 avril de la même année. Ainsi furent brisées tout à coup les espérances que la Belgique fondait sur un jeune savant destiné à se placer au premier rang parmi les mathémati- ciens modernes. J- Liagre. Annuaire de VUniversitécatholique de Louvain, 1849.",
+      "start_char": 1209,
+      "end_char": 1884,
+      "sentences": [
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848;",
+        "mais la mort vint malheureusement l'y surprendre à l'âge de vingt-quatre ans : une rapide affection de poitrine le con-duisit au tombeau le 21 avril de la même année.",
+        "Ainsi furent brisées tout à coup les espérances que la Belgique fondait sur un jeune savant destiné à se placer au premier rang parmi les mathémati- ciens modernes.",
+        "J- Liagre.",
+        "Annuaire de VUniversitécatholique de Louvain, 1849."
+      ],
+      "coherence_score": 0.6538437008857727,
+      "sentence_count": 6
+    }
+  ]
+}

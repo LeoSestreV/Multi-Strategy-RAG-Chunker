@@ -1,0 +1,81 @@
+{
+  "source_file": "bio_sample_02.txt",
+  "strategy": "sentence_based_chunking",
+  "timestamp": "2026-02-11T10:06:54.164944",
+  "config": {
+    "embedding_model": "nomic-embed-text",
+    "max_sentences_per_chunk": 8,
+    "max_chunk_size": 1500,
+    "min_chunk_size": 100
+  },
+  "total_chunks": 4,
+  "chunks": [
+    {
+      "text": "Claude Lévi-Strauss, né le 28 novembre 1908 à Bruxelles et mort le 30 octobre 2009 à Paris, est un anthropologue et ethnologue français. Il est considéré comme le fondateur de l'anthropologie structurale et l'un des intellectuels les plus influents du XXe siècle. Formation et débuts\n Fils d'un artiste peintre, Claude Lévi-Strauss grandit à Paris dans un milieu cultivé. Il poursuit des études de droit et de philosophie à la Sorbonne, où il obtient l'agrégation de philosophie en 1931. Déçu par l'enseignement de la philosophie en France, il s'oriente vers l'ethnologie après avoir lu « Primitive Society » de Robert Lowie. Expéditions au Brésil\n En 1935, Lévi-Strauss part enseigner la sociologie à l'Université de São Paulo au Brésil. Il profite de ce séjour pour mener plusieurs expéditions ethnographiques auprès des peuples autochtones du Mato Grosso et de l'Amazonie, notamment les Caduveo, les Bororo et les Nambikwara.",
+      "start_char": 0,
+      "end_char": 930,
+      "sentences": [
+        "Claude Lévi-Strauss, né le 28 novembre 1908 à Bruxelles et mort le 30 octobre 2009 à Paris, est un anthropologue et ethnologue français.",
+        "Il est considéré comme le fondateur de l'anthropologie structurale et l'un des intellectuels les plus influents du XXe siècle.",
+        "Formation",
+        "et débuts\n Fils d'un artiste peintre, Claude Lévi-Strauss grandit à Paris dans un milieu cultivé.",
+        "Il poursuit des études de droit et de philosophie à la Sorbonne, où il obtient l'agrégation de philosophie en 1931.",
+        "Déçu par l'enseignement de la philosophie en France, il s'oriente vers l'ethnologie après avoir lu « Primitive Society » de Robert Lowie.",
+        "Expéditions au Brésil\n En 1935, Lévi-Strauss part enseigner la sociologie à l'Université de São Paulo au Brésil.",
+        "Il profite de ce séjour pour mener plusieurs expéditions ethnographiques auprès des peuples autochtones du Mato Grosso et de l'Amazonie, notamment les Caduveo, les Bororo et les Nambikwara."
+      ],
+      "coherence_score": 0.6530681848526001,
+      "sentence_count": 8
+    },
+    {
+      "text": "Ces expériences fondamentales nourrissent sa réflexion sur les structures universelles de la pensée humaine.\n Exil et rencontres intellectuelles\n Pendant la Seconde Guerre mondiale, Lévi -Strauss, en raison de ses origines juives, fuit la France pour New York en 1941. À la New School for Social Research, il rencontre le linguiste Roman Jakobson, dont les travaux sur la phonologie structurale influencent profondément sa propre méthodologie. Cette rencontre est décisive pour l'élaboration de l'anthropologie structurale. L'anthropologie structurale\n De retour en France, Lévi-Strauss publie en 1949 « Les Structures élémentaires de la parenté », ouvrage fondateur dans lequel il applique les méthodes de la linguistique structurale à l'étude des systèmes de parenté. Il démontre que les règles du mariage et de l'échange obéissent à des structures logiques universelles. En 1955, il publie « Tristes Tropiques », récit autobiographique et philosophique de ses voyages au Brésil, qui rencontre un immense succès public.\n Collège de France et consécration\n Élu professeur au Collège de France en 1959, Lévi-Strauss y occupe la chaire d'anthropologie sociale jusqu'en 1982. Il publie les quatre volumes des « Mythologiques » entre 1964 et 1971, une analyse monumentale des mythes amérindiens.",
+      "start_char": 931,
+      "end_char": 2223,
+      "sentences": [
+        "Ces expériences fondamentales nourrissent sa réflexion sur les structures universelles de la pensée humaine.\n Exil et rencontres intellectuelles\n Pendant la Seconde Guerre mondiale, Lévi",
+        "-Strauss, en raison de ses origines juives, fuit la France pour New York en 1941.",
+        "À la New School for Social Research, il rencontre le linguiste Roman Jakobson, dont les travaux sur la phonologie structurale influencent profondément sa propre méthodologie.",
+        "Cette rencontre est décisive pour l'élaboration de l'anthropologie structurale.",
+        "L'anthropologie structurale\n De retour en France, Lévi-Strauss publie en 1949 « Les Structures élémentaires de la parenté », ouvrage fondateur dans lequel il applique les méthodes de la linguistique structurale à l'étude des systèmes de parenté.",
+        "Il démontre que les règles du mariage et de l'échange obéissent à des structures logiques universelles.",
+        "En 1955, il publie « Tristes Tropiques », récit autobiographique et philosophique de ses voyages au Brésil, qui rencontre un immense succès public.\n Collège de France et consécration\n Élu professeur au Collège de France en 1959, Lévi-Strauss y occupe la chaire d'anthropologie sociale jusqu'en 1982.",
+        "Il publie les quatre volumes des « Mythologiques » entre 1964 et 1971, une analyse monumentale des mythes amérindiens."
+      ],
+      "coherence_score": 0.7052079439163208,
+      "sentence_count": 8
+    },
+    {
+      "text": "Il est élu à l'Académie française en 1973. Sa pensée a exercé une influence considérable sur la philosophie, la littérature et les sciences humaines. Principales publications\n Lévi -Strauss, C. (1949). Les Structures élémentaires de la parenté. PUF. Lévi-Strauss, C. (1955). Tristes Tropiques.",
+      "start_char": 2224,
+      "end_char": 2517,
+      "sentences": [
+        "Il est élu à l'Académie française en 1973.",
+        "Sa pensée a exercé une influence considérable sur la philosophie, la littérature et les sciences humaines.",
+        "Principales publications\n Lévi",
+        "-Strauss, C. (1949).",
+        "Les Structures élémentaires de la parenté.",
+        "PUF.",
+        "Lévi-Strauss, C. (1955).",
+        "Tristes Tropiques."
+      ],
+      "coherence_score": 0.6055358052253723,
+      "sentence_count": 8
+    },
+    {
+      "text": "Plon. Lévi-Strauss, C. (1958). Anthropologie structurale. Plon. Lévi-Strauss, C. (1962). La Pensée sauvage. Plon.",
+      "start_char": 2518,
+      "end_char": 2631,
+      "sentences": [
+        "Plon.",
+        "Lévi-Strauss, C. (1958).",
+        "Anthropologie structurale.",
+        "Plon.",
+        "Lévi-Strauss, C. (1962).",
+        "La Pensée sauvage.",
+        "Plon."
+      ],
+      "coherence_score": 0.601315438747406,
+      "sentence_count": 7
+    }
+  ]
+}

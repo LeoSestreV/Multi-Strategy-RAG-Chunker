@@ -1,0 +1,185 @@
+{
+  "source_file": "ANDRIES (François-Eugène).txt",
+  "strategy": "proposition_based_chunking",
+  "timestamp": "2026-02-11T11:04:00.662454",
+  "config": {
+    "embedding_model": "nomic-embed-text",
+    "llm_model": "mistral",
+    "max_propositions_per_chunk": 10,
+    "similarity_threshold": 0.6
+  },
+  "total_chunks": 6,
+  "chunks": [
+    {
+      "text": "ANDRIES is a mathematician ANDRIES is a professor at the University of Louvain ANDRIES was born in Malines on 6 march 1824 ANDRIES died in Paris on 21 april 1848 Il entre à l'université de Louvain en octobre 1839 Il fait des brillantes études humanitaires dans son collège natal He has a natural inclination towards the study of mathematical sciences The examination for his candidacy took place in April 1844 He passed the examination with great distinction Parmi",
+      "start_char": 0,
+      "end_char": 521,
+      "sentences": [
+        "ANDRIES (François-Eugène), mathé- maticien, professeur à l'Université de Louvain, né à Malines, le 6 mars 1824, mort à Paris, le 21 avril 1848.",
+        "Il entra comme élève à l'université de Louvain au mois d'octobre 1839, après avoir fait de brillantes études humanitaires au collège de sa ville natale.",
+        "Porté par son génie naturel vers l'étude des sciences mathé- matiques, il subit avec grande distinc- tion l'examen delà candidature au mois d'avril 1844.",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845"
+      ],
+      "coherence_score": 0.7210623621940613,
+      "atomic_facts": [
+        "ANDRIES is a mathematician",
+        "ANDRIES is a professor at the University of Louvain",
+        "ANDRIES was born in Malines on 6 march 1824",
+        "ANDRIES died in Paris on 21 april 1848",
+        "Il entre à l'université de Louvain en octobre 1839",
+        "Il fait des brillantes études humanitaires dans son collège natal",
+        "He has a natural inclination towards the study of mathematical sciences",
+        "The examination for his candidacy took place in April 1844",
+        "He passed the examination with great distinction",
+        "Parmi"
+      ],
+      "proposition_count": 10
+    },
+    {
+      "text": "les le de cette formulation est suivante : Rechercher les caracteres ces caracteres servent a reconnaître la convergence ces caracteres servent a reconnaître la divergence ces caracteres servent a reconnaître des series An dries redigea un memoire et la palme academique lui fut unanimement adjugee Son travail est imprime questions this thorny question was asked proposees pour concours universitaire 1845 September 1847 in the month of March 1848 Annuaire of VUniversitecatholique de Louvain in 1849",
+      "start_char": 451,
+      "end_char": 1884,
+      "sentences": [
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        ", il s'en trouvait une qui présentait des difficultés particulières et qui était formulée comme suit : Rechercher les ca- ractères qui servent à reconnaître la con- vergence et la divergence des séries.",
+        "An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée.",
+        "Son travail, qui brille par la sagacité autant que par l'érudition, a été imprimé dans les Annales des Universités de Bel- gique.",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée.",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "Parmi les questions propo- sées pour le concours universitaire de 1845",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848;",
+        "Annuaire de VUniversitécatholique de Louvain, 1849."
+      ],
+      "coherence_score": 0.7987141357734799,
+      "atomic_facts": [
+        "les",
+        "le",
+        "de",
+        "cette formulation est suivante : Rechercher les caracteres",
+        "ces caracteres servent a reconnaître la convergence",
+        "ces caracteres servent a reconnaître la divergence",
+        "ces caracteres servent a reconnaître des series",
+        "An dries redigea un memoire",
+        "et la palme academique lui fut unanimement adjugee",
+        "Son travail est imprime",
+        "questions",
+        "this thorny question was asked",
+        "proposees",
+        "pour",
+        "concours",
+        "universitaire",
+        "1845",
+        "September 1847",
+        "in the month of March 1848",
+        "Annuaire",
+        "of",
+        "VUniversitecatholique de Louvain",
+        "in",
+        "1849"
+      ],
+      "proposition_count": 24
+    },
+    {
+      "text": "il se trouve une qui presente des difficultes particulieres Son travail est sage Son travail est erudit Le travail est publie dans Les Annales des Universites de Belgique Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain le 2 août 1846 Andries fit preuve d'un talent hors ligne par la manière dont il donna le cours des mathématiques spéciales en remplacement de Pagani in mathematiques mais la mort vint An writes a memo in response to this thorny question and the palm academique was unanimously awarded was nominated Andries est doctor",
+      "start_char": 521,
+      "end_char": 1340,
+      "sentences": [
+        ", il s'en trouvait une qui présentait des difficultés particulières et qui était formulée comme suit : Rechercher les ca- ractères qui servent à reconnaître la con- vergence et la divergence des séries.",
+        "Son travail, qui brille par la sagacité autant que par l'érudition, a été imprimé dans les Annales des Universités de Bel- gique.",
+        "Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain, le 2 août 1846, Andries fit preuve d'un talent hors ligne par la ma- nière dont il donna le cours des mathé- matiques spéciales, en remplacement de Pagani.",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "mais la mort vint malheureusement l'y surprendre à l'âge de vingt-quatre ans : une rapide affection de poitrine le con-duisit au tombeau le 21 avril de la même année.",
+        "An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée.",
+        "An- dries rédigea un mémoire en réponse à cette question épineuse, et la palme aca- démique lui fut unanimement adjugée.",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain, le 2 août 1846, Andries fit preuve d'un talent hors ligne par la ma- nière dont il donna le cours des mathé- matiques spéciales, en remplacement de Pagani.",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction."
+      ],
+      "coherence_score": 0.9279177263379097,
+      "atomic_facts": [
+        "il se trouve une qui presente des difficultes particulieres",
+        "Son travail est sage",
+        "Son travail est erudit",
+        "Le travail est publie dans Les Annales des Universites de Belgique",
+        "Nommé professeur agrégé à la faculté des sciences de l'Université de Louvain le 2 août 1846",
+        "Andries fit preuve d'un talent hors ligne",
+        "par la manière dont il donna le cours des mathématiques spéciales",
+        "en remplacement de Pagani",
+        "in mathematiques",
+        "mais la mort vint",
+        "An writes a memo in response to this thorny question",
+        "and the palm academique was unanimously awarded",
+        "was nominated",
+        "Andries est",
+        "doctor"
+      ],
+      "proposition_count": 15
+    },
+    {
+      "text": "in sciences physiques The young scientist was destined to be among the leading mathematicians of modern times by acclamation with the greatest distinction",
+      "start_char": 1209,
+      "end_char": 1340,
+      "sentences": [
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "Ainsi furent brisées tout à coup les espérances que la Belgique fondait sur un jeune savant destiné à se placer au premier rang parmi les mathémati- ciens modernes.",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction.",
+        "En septembre 1847,il fut nommé docteur en sciences physiques et mathé- matiques par acclamation et avec la plus grande distinction."
+      ],
+      "coherence_score": 0.9131953120231628,
+      "atomic_facts": [
+        "in sciences physiques",
+        "The young scientist was destined to be among the leading mathematicians of modern times",
+        "by acclamation",
+        "with the greatest distinction"
+      ],
+      "proposition_count": 4
+    },
+    {
+      "text": "Desiring to hear the great masters of science Belgium had hopes for a young scientist Suddenly, the hopes of Belgium were broken J is named Liagre. and familiarize with their teaching methods he traveled to Paris",
+      "start_char": 1341,
+      "end_char": 1489,
+      "sentences": [
+        "Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848;",
+        "Ainsi furent brisées tout à coup les espérances que la Belgique fondait sur un jeune savant destiné à se placer au premier rang parmi les mathémati- ciens modernes.",
+        "J- Liagre.",
+        "Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848;",
+        "Désirant entendre les grands maîtres de la science et se familia- riser avec leurs méthodes d'enseignement, il aerendit à Paris,au mois de marsl848;"
+      ],
+      "coherence_score": 0.908581331372261,
+      "atomic_facts": [
+        "Desiring to hear the great masters of science",
+        "Belgium had hopes for a young scientist",
+        "Suddenly, the hopes of Belgium were broken",
+        "J is named Liagre.",
+        "and familiarize with their teaching methods",
+        "he traveled to Paris"
+      ],
+      "proposition_count": 6
+    },
+    {
+      "text": "malheureusement l'y surprendre à l'âge de vingt-quatre ans une rapide affection de poitrine le con-duisit au tombeau le 21 avril de la même année is",
+      "start_char": 1490,
+      "end_char": 1884,
+      "sentences": [
+        "mais la mort vint malheureusement l'y surprendre à l'âge de vingt-quatre ans : une rapide affection de poitrine le con-duisit au tombeau le 21 avril de la même année.",
+        "Annuaire de VUniversitécatholique de Louvain, 1849."
+      ],
+      "coherence_score": 1.0,
+      "atomic_facts": [
+        "malheureusement l'y surprendre",
+        "à l'âge de vingt-quatre ans",
+        "une rapide affection de poitrine",
+        "le con-duisit au tombeau",
+        "le 21 avril",
+        "de la même année",
+        "is"
+      ],
+      "proposition_count": 7
+    }
+  ]
+}

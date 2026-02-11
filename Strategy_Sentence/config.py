@@ -1,0 +1,14 @@
+from dataclasses import dataclass
+
+
+@dataclass
+class SentenceChunkingConfig:
+    embedding_model: str = "nomic-embed-text"
+    ollama_base_url: str = "http://localhost:11434"
+    spacy_model: str = "fr_core_news_lg"
+    max_sentences_per_chunk: int = 8
+    max_chunk_size: int = 1500
+    min_chunk_size: int = 100
+    input_dir: str = "../BioTxt/"
+    output_dir: str = "./output/"
+    max_workers: int = 4
