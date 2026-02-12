@@ -37,14 +37,31 @@ class PropositionChunker:
     def __init__(self, config: PropositionChunkingConfig) -> None:
         self.config = config
 
+    @staticmethod
+    def _is_valid_proposition(text: str) -> bool:
+        """Filter out incomplete propositions (isolated words, punctuation, etc.)."""
+        text = text.strip()
+        if len(text) < 10:
+            return False
+        # Must contain at least one verb-like structure (space implies multi-word)
+        if ' ' not in text:
+            return False
+        # Reject strings that are only punctuation/stopwords
+        stripped = text.strip('.,;:!?-—–()[]"\'« » ')
+        if len(stripped) < 5:
+            return False
+        return True
+
     def _extract_propositions(self, sentence: Sentence) -> list[Proposition]:
-        """Use Ollama LLM to decompose a sentence into atomic facts."""
+        """Use Ollama LLM to decompose a sentence into atomic facts in French."""
         prompt = (
-            "Decompose the following sentence into a list of atomic propositions "
-            "(simple, standalone facts). Return ONLY a JSON array of strings, "
-            "nothing else.\n\n"
-            f"Sentence: \"{sentence.text}\"\n\n"
-            "JSON array:"
+            "Décompose la phrase suivante en une liste de propositions atomiques "
+            "(des faits simples et autonomes). Chaque proposition doit être une "
+            "phrase complète en français, avec sujet et verbe. "
+            "Ne traduis PAS en anglais : la sortie doit être exclusivement en français. "
+            "Retourne UNIQUEMENT un tableau JSON de chaînes de caractères, rien d'autre.\n\n"
+            f"Phrase : \"{sentence.text}\"\n\n"
+            "Tableau JSON :"
         )
 
         ollama_base_url = self.config.ollama_base_url.rstrip("/")
@@ -77,7 +94,8 @@ class PropositionChunker:
                             text=f.strip(),
                             source_sentence_index=sentence.index
                         )
-                        for f in facts if isinstance(f, str) and f.strip()
+                        for f in facts
+                        if isinstance(f, str) and f.strip() and self._is_valid_proposition(f)
                     ]
         except Exception as e:
             print(f"LLM proposition extraction error: {e}")
