@@ -1,6 +1,6 @@
 # Multi-Strategy RAG Chunker
 
-A benchmark framework for comparing text chunking strategies applied to French academic biographies. Each strategy is a standalone project with an identical pipeline architecture, enabling direct comparison of chunking approaches for Retrieval-Augmented Generation (RAG).
+A benchmark framework for comparing text chunking strategies applied to Belgian academic biographies. Each strategy is a standalone project with an identical pipeline architecture.
 
 ## Architecture
 

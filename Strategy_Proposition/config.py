@@ -14,4 +14,5 @@ class PropositionChunkingConfig:
     default_coherence_score: float = 1.0
     input_dir: str = "../BioTxt/"
     output_dir: str = "./output/"
-    max_workers: int = 1
+    max_workers: int = 8
+    

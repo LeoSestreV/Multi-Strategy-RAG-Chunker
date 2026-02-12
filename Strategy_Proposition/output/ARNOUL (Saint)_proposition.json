@@ -1,283 +1,167 @@
 {
   "source_file": "ARNOUL (Saint).txt",
   "strategy": "proposition_based_chunking",
-  "timestamp": "2026-02-11T11:10:32.912809",
+  "timestamp": "2026-02-12T13:36:44.525018",
   "config": {
     "embedding_model": "nomic-embed-text",
     "llm_model": "mistral",
     "max_propositions_per_chunk": 10,
     "similarity_threshold": 0.6
   },
-  "total_chunks": 11,
+  "total_chunks": 7,
   "chunks": [
     {
-      "text": "ARNOUL (Saint) is a bishop of Soissons ARNOUL (Saint) is son of Fulbert ARNOUL (Saint) is son of Menisende Fulbert and Menisende are lords of Tydenghem Tydenghem is in Western Flanders Pour se conformer aux désirs de sa famille à la coutume des gentilshommes de cette époque autant que par la régularité de sa conduite Mais il se vit libre par la mort de son père Il embrassa l'etat religieux dans le monastere de Saint-Medard ARNOUL (Saint) died on 15th August 1087 J-J. De Snicl ARNULPHE et Arnoul est vêtu",
+      "text": "Arnoald (Saint) était fils de Fulbert et de Menisende, seigneurs de Tydenghem, dans la Flandre occidentale. Arnoald (Saint), pour se conformer aux désirs de sa famille et à la coutume des gentilshommes de cette époque, prit d'abord le parti des armes. Arnoald (Saint) s'y distingua par sa bravoure autant que par la régularité de sa conduite. Après la mort de son père, Arnoald (Saint) se vit libre. Arnoald (Saint) embrassa l'état religieux dans le monastère de Saint-Médard, à Soissons. Arnoald (Saint), observant une règle austère, jaloux de conserver le recueillement en évitant toute parole inutile, partageait son temps entre l'oraison et l'étude des sciences sacrées. Arnoald (Saint) était moins humble et moins bienveillant pour ses frères. L'abbé est venu mourir, et Arnulphe a été élu pour lui succéder Arnulphe a fait un bien infini au couvent par la sagesse de son administration 11 s'est hâta d'abdiquer la prélature",
       "start_char": 0,
-      "end_char": 2591,
+      "end_char": 1027,
       "sentences": [
         "ARNOUL (Saint), évêque de Soissons, décédé le 15 août 1087, était fils de Fulbert et de Menisende, seigneurs de Tydenghem, dans la Flandre occidentale.",
-        "Pour se confor- mer aux désirs de sa famille et à la cou- tume des gentilshommes de cette époque, il prit d'abord le parti des armes et s'y distingua par sa bravoure, autant que par la régularité de sa conduite.",
-        "Mais il ne se vit pas plutôt libre par la mort de son père, qu'il embrassa l'état reli- gieux dans le monastère de Saint-Mé- dard, à Soissons.",
-        "ARNOUL (Saint), évêque de Soissons, décédé le 15 août 1087, était fils de Fulbert et de Menisende, seigneurs de Tydenghem, dans la Flandre occidentale.",
-        "J.-J.",
-        "De Snicl",
-        "ARNULPHE",
-        "Pour se confor- mer aux désirs de sa famille et à la cou- tume des gentilshommes de cette époque, il prit d'abord le parti des armes et s'y distingua par sa bravoure, autant que par la régularité de sa conduite.",
-        "Monté sur un âne et très-simplement vêtu, Arnoul accomplit heureusement cette mission et parvint à rétablir partout une réconcilia- tion profonde et sincère, qui changea en peu de temps toute la face de la contrée."
-      ],
-      "coherence_score": 0.768167719244957,
-      "atomic_facts": [
-        "ARNOUL (Saint) is a bishop of Soissons",
-        "ARNOUL (Saint) is son of Fulbert",
-        "ARNOUL (Saint) is son of Menisende",
-        "Fulbert and Menisende are lords of Tydenghem",
-        "Tydenghem is in Western Flanders",
-        "Pour se conformer aux désirs de sa famille",
-        "à la coutume des gentilshommes de cette époque",
-        "autant que par la régularité de sa conduite",
-        "Mais il se vit libre par la mort de son père",
-        "Il embrassa l'etat religieux dans le monastere de Saint-Medard",
-        "ARNOUL (Saint) died on 15th August 1087",
-        "J-J.",
-        "De",
-        "Snicl",
-        "ARNULPHE",
-        "et",
-        "Arnoul est vêtu"
-      ],
-      "proposition_count": 17
-    },
-    {
-      "text": "il prit d'abord le parti des armes s'y distingua par sa bravoure Ce monastere est a Soissons Observant une règle austère Jaloux de conserver le recueil-lement En évitant toute parole inutile Partageait son temps entre l'oraison et l'étude des sciences sacrées Sans en être moins humble Sans en être moins bienveillant Pour ses frères",
-      "start_char": 152,
-      "end_char": 745,
-      "sentences": [
-        "Pour se confor- mer aux désirs de sa famille et à la cou- tume des gentilshommes de cette époque, il prit d'abord le parti des armes et s'y distingua par sa bravoure, autant que par la régularité de sa conduite.",
-        "Mais il ne se vit pas plutôt libre par la mort de son père, qu'il embrassa l'état reli- gieux dans le monastère de Saint-Mé- dard, à Soissons.",
-        "Observant une règle austère, jaloux de conserver le recueil- lement en évitant toute parole inutile, il partageait son temps entre l'oraison et l'étude des sciences sacrées, sans en être moins humble et moins bienveillant pour ses frères."
-      ],
-      "coherence_score": 0.7551141381263733,
-      "atomic_facts": [
-        "il prit d'abord le parti des armes",
-        "s'y distingua par sa bravoure",
-        "Ce monastere est a Soissons",
-        "Observant une règle austère",
-        "Jaloux de conserver le recueil-lement",
-        "En évitant toute parole inutile",
-        "Partageait son temps entre l'oraison et l'étude des sciences sacrées",
-        "Sans en être moins humble",
-        "Sans en être moins bienveillant",
-        "Pour ses frères"
-      ],
-      "proposition_count": 10
-    },
-    {
-      "text": "Abbe est venu mourir Arnulphe est elu pour succeder a l'abbé Arnulphe fait un bien infini au couvent Sagesse de l'administration d'Arnulphe d'abdiquer la prélature pour regagner sa cellule solitaire mais il n'y resta que peu de temps Le diocese de Soissons a perdu son premier pasteur Un pieux religieux fut appele pour remplacer le premier pasteur Le choix du clergé confirma l'appel du pieux religieux",
-      "start_char": 746,
-      "end_char": 1239,
-      "sentences": [
-        "Aussi, l'abbé étant venu à mourir, Arnulphe fut,malgré]ui,élu pour lui succéder et fit un bien infini au cou- vent par la sagesse de son administration.",
-        "11 se hâta cependant, aussitôt qu'il le put, d'abdiquer la prélature pour regagner sa cellule solitaire, mais il n'y resta que peu de temps.",
-        "Le diocèse de Soissons ayant perdu son premier pasteur, le pieux religieux fut appelé à le remplacer par le choix du clergé, confirmé par le concile de Meaux et par les ordres du légat apos- tolique."
-      ],
-      "coherence_score": 0.6837277412414551,
-      "atomic_facts": [
-        "Abbe est venu mourir",
-        "Arnulphe est elu pour succeder a l'abbé",
-        "Arnulphe fait un bien infini au couvent",
-        "Sagesse de l'administration d'Arnulphe",
-        "d'abdiquer la prélature",
-        "pour regagner sa cellule solitaire",
-        "mais il n'y resta que peu de temps",
-        "Le diocese de Soissons a perdu son premier pasteur",
-        "Un pieux religieux fut appele pour remplacer le premier pasteur",
-        "Le choix du clergé confirma l'appel du pieux religieux"
-      ],
-      "proposition_count": 10
-    },
-    {
-      "text": "11 se hâta pelé Ces cantons de cette époque étaient Bruges Ces cantons de cette époque étaient Ghistelles Ces cantons de cette époque étaient Fumes Ces cantons de cette époque étaient Thorhout Ces cantons de cette époque étaient Oudenburg Le comte et ses nobles priérent le saint évêque Le saint évêque priérent par le comte et ses nobles Le saint évêque parcourut ces pays aux mœurs barbares cependant",
-      "start_char": 899,
-      "end_char": 1039,
-      "sentences": [
-        "11 se hâta cependant, aussitôt qu'il le put, d'abdiquer la prélature pour regagner sa cellule solitaire, mais il n'y resta que peu de temps.",
-        "pelés",
-        "Comme l'esprit de discorde, de haine et de vengeance régnait à cette époque dans les cantons de Bruges,de Ghistelles, de Fumes, de Thorhout et d'Oudenburg, le comte et ses nobles priè- rent le saint évêque de parcourir ces pays aux mœurs barbares et de ramener à l'es- prit du christianisme qu'ils professaient leurs malheureux habitants.",
+        "Pour se conformer aux désirs de sa famille et à la coutume des gentilshommes de cette époque, il prit d'abord le parti des armes et s'y distingua par sa bravoure, autant que par la régularité de sa conduite.",
+        "Mais il ne se vit pas plutôt libre par la mort de son père, qu'il embrassa l'état religieux dans le monastère de Saint-Médard, à Soissons.",
+        "Observant une règle austère, jaloux de conserver le recueillement en évitant toute parole inutile, il partageait son temps entre l'oraison et l'étude des sciences sacrées, sans en être moins humble et moins bienveillant pour ses frères.",
+        "Aussi, l'abbé étant venu à mourir, Arnulphe fut,malgré]ui,élu pour lui succéder et fit un bien infini au couvent par la sagesse de son administration.",
         "11 se hâta cependant, aussitôt qu'il le put, d'abdiquer la prélature pour regagner sa cellule solitaire, mais il n'y resta que peu de temps."
       ],
-      "coherence_score": 0.7666531801223755,
+      "coherence_score": 0.7401493191719055,
       "atomic_facts": [
-        "11 se hâta",
-        "pelé",
-        "Ces cantons de cette époque étaient Bruges",
-        "Ces cantons de cette époque étaient Ghistelles",
-        "Ces cantons de cette époque étaient Fumes",
-        "Ces cantons de cette époque étaient Thorhout",
-        "Ces cantons de cette époque étaient Oudenburg",
-        "Le comte et ses nobles priérent le saint évêque",
-        "Le saint évêque priérent par le comte et ses nobles",
-        "Le saint évêque parcourut ces pays aux mœurs barbares",
-        "cependant"
+        "Arnoald (Saint) était fils de Fulbert et de Menisende, seigneurs de Tydenghem, dans la Flandre occidentale.",
+        "Arnoald (Saint), pour se conformer aux désirs de sa famille et à la coutume des gentilshommes de cette époque, prit d'abord le parti des armes.",
+        "Arnoald (Saint) s'y distingua par sa bravoure autant que par la régularité de sa conduite.",
+        "Après la mort de son père, Arnoald (Saint) se vit libre.",
+        "Arnoald (Saint) embrassa l'état religieux dans le monastère de Saint-Médard, à Soissons.",
+        "Arnoald (Saint), observant une règle austère, jaloux de conserver le recueillement en évitant toute parole inutile, partageait son temps entre l'oraison et l'étude des sciences sacrées.",
+        "Arnoald (Saint) était moins humble et moins bienveillant pour ses frères.",
+        "L'abbé est venu mourir, et Arnulphe a été élu pour lui succéder",
+        "Arnulphe a fait un bien infini au couvent par la sagesse de son administration",
+        "11 s'est hâta d'abdiquer la prélature"
       ],
-      "proposition_count": 11
+      "proposition_count": 10
     },
     {
-      "text": "il le put les désordres le désolaient le saint revint à Oudenburg On prepa la canonisation du bienheureux prelat dans le concile de Beauvais en novembre 20 l'elevation de ses reliques eut lieu le 1er mai de l'annee suivante",
-      "start_char": 899,
-      "end_char": 3185,
+      "text": "Arnoald (Saint) décédé le 15 août 1087.",
+      "start_char": 0,
+      "end_char": 151,
+      "sentences": [
+        "ARNOUL (Saint), évêque de Soissons, décédé le 15 août 1087, était fils de Fulbert et de Menisende, seigneurs de Tydenghem, dans la Flandre occidentale."
+      ],
+      "coherence_score": 1.0,
+      "atomic_facts": [
+        "Arnoald (Saint) décédé le 15 août 1087."
+      ],
+      "proposition_count": 1
+    },
+    {
+      "text": "11 a regagné sa cellule solitaire Arnoul fut monté sur un âne. Arnoul était très-simplement vêtu. Arnoul accomplit heureusement cette mission. Arnoul parvint à rétablir partout une réconciliation profonde et sincère. Arnoul changea en peu de temps toute la face de la contrée. Les habitants d'Oudenburg donnèrent une église à Arnoul. Les habitants d'Oudenburg donnèrent une église qu'avait bâtie saint Ursinar à Arnoul. Arnoul fonda une abbaye de bénédictins près de laquelle les habitants d'Oudenburg avaient donné une église. Arnoul fonda une abbaye de bénédictins près de laquelle ils avaient donné une église qu'avait bâtie saint Ursinar.",
+      "start_char": 887,
+      "end_char": 2835,
       "sentences": [
         "11 se hâta cependant, aussitôt qu'il le put, d'abdiquer la prélature pour regagner sa cellule solitaire, mais il n'y resta que peu de temps.",
-        "Après avoir repris,pendant quelque temps,l'adminis- tration du diocèse de Soissous, dont les désordres le désolaient, le saint revint à Oudenburg et y mourut.",
-        "On prépara la canonisation du bienheureux prélat dans leconciledeBeauvais, ennovembrell20, et l'élévation de ses reliques eut lieu le 1er mai de l'année suivante."
+        "Monté sur un âne et très-simplement vêtu, Arnoul accomplit heureusement cette mission et parvint à rétablir partout une réconciliation profonde et sincère, qui changea en peu de temps toute la face de la contrée.",
+        "Pénétrés de reconnaissance pour l'humble apôtre de la paix, les habitants d'Oudenburg lui donnèrent une église que saint Ursinar avait bâtie dans leur bourgade, près de laquelle Arnoul fonda une abbaye de bénédictins qui devint une des plus considérables de la Flandre."
       ],
-      "coherence_score": 0.7346204519271851,
+      "coherence_score": 0.7393437623977661,
       "atomic_facts": [
-        "il le put",
-        "les désordres le désolaient",
-        "le saint revint à Oudenburg",
-        "On prepa la canonisation du bienheureux prelat",
-        "dans le concile de Beauvais",
-        "en novembre 20",
-        "l'elevation de ses reliques eut lieu",
-        "le 1er mai de l'annee suivante"
-      ],
-      "proposition_count": 8
-    },
-    {
-      "text": "Le concile de Meaux confirma le choix du clergé Les ordres du legat apostolique confirmerent le choix du clergé Il mettait tout en oeuvre pour eteindre le schisme Le pape le chargea de remettre au comte de Flandre Kobert le Frison Kobert le Frison exerca des violences criminelles Le pape blama vivement la conduite de Kobert le Frison Il envoya des lettres pour condamner la conduite de Kobert le Frison Accompagné des dignitaires de l'Église deTérouanne le comte avait maltraités et proscrits il remit à Eobert les lettres pontificales",
-      "start_char": 1040,
-      "end_char": 1859,
-      "sentences": [
-        "Le diocèse de Soissons ayant perdu son premier pasteur, le pieux religieux fut appelé à le remplacer par le choix du clergé, confirmé par le concile de Meaux et par les ordres du légat apos- tolique.",
-        "Il y mettait tout en œuvre pour éteindre le schisme, quand le pape le chargea de remettre au comte de Flandre Kobert le Frison, qui avait exercé des violences criminelles, des lettres qui blâmaient vi- vement sa conduite.",
-        "Accompagné des dignitaires de l'Église deTérouanne, que le comte avait maltraités et proscrits, il remit à Eobert les lettres pontificales, tandis que les prêtres exilés se jetaient à ses pieds."
-      ],
-      "coherence_score": 0.7705216407775879,
-      "atomic_facts": [
-        "Le concile de Meaux confirma le choix du clergé",
-        "Les ordres du legat apostolique confirmerent le choix du clergé",
-        "Il mettait tout en oeuvre pour eteindre le schisme",
-        "Le pape le chargea de remettre au comte de Flandre Kobert le Frison",
-        "Kobert le Frison exerca des violences criminelles",
-        "Le pape blama vivement la conduite de Kobert le Frison",
-        "Il envoya des lettres pour condamner la conduite de Kobert le Frison",
-        "Accompagné des dignitaires de l'Église deTérouanne",
-        "le comte avait maltraités et proscrits",
-        "il remit à Eobert les lettres pontificales"
+        "11 a regagné sa cellule solitaire",
+        "Arnoul fut monté sur un âne.",
+        "Arnoul était très-simplement vêtu.",
+        "Arnoul accomplit heureusement cette mission.",
+        "Arnoul parvint à rétablir partout une réconciliation profonde et sincère.",
+        "Arnoul changea en peu de temps toute la face de la contrée.",
+        "Les habitants d'Oudenburg donnèrent une église à Arnoul.",
+        "Les habitants d'Oudenburg donnèrent une église qu'avait bâtie saint Ursinar à Arnoul.",
+        "Arnoul fonda une abbaye de bénédictins près de laquelle les habitants d'Oudenburg avaient donné une église.",
+        "Arnoul fonda une abbaye de bénédictins près de laquelle ils avaient donné une église qu'avait bâtie saint Ursinar."
       ],
       "proposition_count": 10
     },
     {
-      "text": "An intrusive bishop occupied the episcopal city The castle was within the diocese The person was the prelate The prelate did not hesitate The sweet virtue of the bishop prevailed que saint Ursinar avait bâtie dans leur bourgade",
-      "start_char": 1240,
-      "end_char": 2863,
+      "text": "Le diocèse de Soissons a perdu son premier pasteur Le pieux religieux a été appelé pour le remplacer par le choix du clergé Le choix du clergé a été confirmé par le concile de Meaux Le choix du clergé a été confirmé par les ordres du légat apostolique Un évêque intrus occupe la ville épiscopale Arnoul doit établir sa résidence dans un château du diocèse L'évêque mettait tout en œuvre pour éteindre le schisme Le pape chargeait l'évêque de remettre au comte de Flandre Kobert le Frison des lettres qui blâmaient vivement sa conduite Tout autre aurait décliné une mission L'évêque n'hésitait point à accepter une mission périlleuse",
+      "start_char": 1028,
+      "end_char": 1646,
       "sentences": [
+        "Le diocèse de Soissons ayant perdu son premier pasteur, le pieux religieux fut appelé à le remplacer par le choix du clergé, confirmé par le concile de Meaux et par les ordres du légat apostolique.",
         "Mais un évêque intrus occupait la ville épiscopale et Arnoul dut établir sa résidence dans un château du diocèse.",
-        "Tout autre aurait dé- cliné une mission aussi périlleuse, mais le prélat n'hésita point.",
-        "Le comte était en proie à une violente colère, mais la douce vertu de l'évêque l'emporta, et ceux qu'il avait ap-",
-        "Pénétrés de reconnaissance pour l'humble apôtre de la paix, les habitants d'Ouden- burg lui donnèrent une église que saint Ursinar avait bâtie dans leur bourgade, près de laquelle Arnoul fonda une abbaye de bénédictins qui devint une des plus considérables de la Flandre."
+        "Il y mettait tout en œuvre pour éteindre le schisme, quand le pape le chargea de remettre au comte de Flandre Kobert le Frison, qui avait exercé des violences criminelles, des lettres qui blâmaient vivement sa conduite.",
+        "Tout autre aurait décliné une mission aussi périlleuse, mais le prélat n'hésita point."
       ],
-      "coherence_score": 0.6898123621940613,
+      "coherence_score": 0.6639321446418762,
       "atomic_facts": [
-        "An intrusive bishop occupied the episcopal city",
-        "The castle was within the diocese",
-        "The person was the prelate",
-        "The prelate did not hesitate",
-        "The sweet virtue of the bishop prevailed",
-        "que saint Ursinar avait bâtie dans leur bourgade"
-      ],
-      "proposition_count": 6
-    },
-    {
-      "text": "Arnoul had to establish his residence Arnoul's residence was in a castle les habitants d'Ouden-burg lui donnèrent une église près de laquelle Arnoul fonda une abbaye de bénédictins qui devint une des plus considérables de la Flandre Après avoir repris l'administration du diocèse de Soissous",
-      "start_char": 1240,
-      "end_char": 3022,
-      "sentences": [
-        "Mais un évêque intrus occupait la ville épiscopale et Arnoul dut établir sa résidence dans un château du diocèse.",
-        "Pénétrés de reconnaissance pour l'humble apôtre de la paix, les habitants d'Ouden- burg lui donnèrent une église que saint Ursinar avait bâtie dans leur bourgade, près de laquelle Arnoul fonda une abbaye de bénédictins qui devint une des plus considérables de la Flandre.",
-        "Après avoir repris,pendant quelque temps,l'adminis- tration du diocèse de Soissous, dont les désordres le désolaient, le saint revint à Oudenburg et y mourut."
-      ],
-      "coherence_score": 0.7480901479721069,
-      "atomic_facts": [
-        "Arnoul had to establish his residence",
-        "Arnoul's residence was in a castle",
-        "les habitants d'Ouden-burg lui donnèrent une église",
-        "près de laquelle Arnoul fonda une abbaye de bénédictins",
-        "qui devint une des plus considérables de la Flandre",
-        "Après avoir repris l'administration du diocèse de Soissous"
-      ],
-      "proposition_count": 6
-    },
-    {
-      "text": "Every other person would have declined a mission this dangerous The mission was dangerous Arnoul a accompli cette mission heureusement Arnoul a accompli une mission Arnoul a accompli une mission heureusement Arnoul a rétabli partout une réconcilia- tion profonde et sincère Arnoul a rétabli une réconcilia- tion profonde et sincère Arnoul a rétabli une réconcilia- tion Arnoul a changé toute la face de la contrée Arnoul a changé la face de la contrée",
-      "start_char": 1576,
-      "end_char": 2591,
-      "sentences": [
-        "Tout autre aurait dé- cliné une mission aussi périlleuse, mais le prélat n'hésita point.",
-        "Monté sur un âne et très-simplement vêtu, Arnoul accomplit heureusement cette mission et parvint à rétablir partout une réconcilia- tion profonde et sincère, qui changea en peu de temps toute la face de la contrée."
-      ],
-      "coherence_score": 0.8070194125175476,
-      "atomic_facts": [
-        "Every other person would have declined a mission this dangerous",
-        "The mission was dangerous",
-        "Arnoul a accompli cette mission heureusement",
-        "Arnoul a accompli une mission",
-        "Arnoul a accompli une mission heureusement",
-        "Arnoul a rétabli partout une réconcilia- tion profonde et sincère",
-        "Arnoul a rétabli une réconcilia- tion profonde et sincère",
-        "Arnoul a rétabli une réconcilia- tion",
-        "Arnoul a changé toute la face de la contrée",
-        "Arnoul a changé la face de la contrée"
+        "Le diocèse de Soissons a perdu son premier pasteur",
+        "Le pieux religieux a été appelé pour le remplacer par le choix du clergé",
+        "Le choix du clergé a été confirmé par le concile de Meaux",
+        "Le choix du clergé a été confirmé par les ordres du légat apostolique",
+        "Un évêque intrus occupe la ville épiscopale",
+        "Arnoul doit établir sa résidence dans un château du diocèse",
+        "L'évêque mettait tout en œuvre pour éteindre le schisme",
+        "Le pape chargeait l'évêque de remettre au comte de Flandre Kobert le Frison des lettres qui blâmaient vivement sa conduite",
+        "Tout autre aurait décliné une mission",
+        "L'évêque n'hésitait point à accepter une mission périlleuse"
       ],
       "proposition_count": 10
     },
     {
-      "text": "les prêtres exilés se jetaient à ses pieds ses plus grands ennemis entrerent ses plus grands ennemis sont entiers ses plus grands ennemis sont en grâce Comme l'esprit de discorde régnait à cette époque dans les cantons de Bruges Comme l'esprit de haine régnait à cette époque dans les cantons de Bruges Comme l'esprit de vengeance régnait à cette époque dans les cantons de Bruges Ces pays aux mœurs barbares étaient les cantons de Bruges, Ghistelles, Fumes, Thorhout et Oudenburg Les malheureux habitants de ces cantons professaient l'esprit du christianisme Le saint évêque ramena à l'esprit du christianisme les malheureux habitants de ces cantons The count was in a violent rage The count was",
-      "start_char": 1665,
-      "end_char": 1973,
+      "text": "L'évêque était accompagné des dignitaires de l'Église de Térouanne que le comte avait maltraités et proscrits L'évêque remettait à Eobert les lettres pontificales Les prêtres exilés se jetaient à ses pieds Le comte était en proie à une violente colère La douce vertu de l'évêque emportait le comte Ceux qu'il avait appelés ses plus grands ennemis rentraient entièrement en grâce Le comte et ses nobles prirent le saint évêque pour parcourir les cantons de Bruges, Ghistelles, Fumes, Thorhout et Oudenburg. Le saint évêque fut prié par le comte et ses nobles pour ramener à l'esprit du christianisme qu'ils professaient leurs malheureux habitants dans ces cantons. Arnoul monta sur un âne. Arnoul se mit à cheval.",
+      "start_char": 1647,
+      "end_char": 2565,
       "sentences": [
         "Accompagné des dignitaires de l'Église deTérouanne, que le comte avait maltraités et proscrits, il remit à Eobert les lettres pontificales, tandis que les prêtres exilés se jetaient à ses pieds.",
-        "ses plus grands ennemis rentrèrent' entièrement en grâce.",
-        "Comme l'esprit de discorde, de haine et de vengeance régnait à cette époque dans les cantons de Bruges,de Ghistelles, de Fumes, de Thorhout et d'Oudenburg, le comte et ses nobles priè- rent le saint évêque de parcourir ces pays aux mœurs barbares et de ramener à l'es- prit du christianisme qu'ils professaient leurs malheureux habitants.",
-        "Le comte était en proie à une violente colère, mais la douce vertu de l'évêque l'emporta, et ceux qu'il avait ap-"
+        "Le comte était en proie à une violente colère, mais la douce vertu de l'évêque l'emporta, et ceux qu'il avait appelés ses plus grands ennemis rentrèrent' entièrement en grâce.",
+        "Comme l'esprit de discorde, de haine et de vengeance régnait à cette époque dans les cantons de Bruges,de Ghistelles, de Fumes, de Thorhout et d'Oudenburg, le comte et ses nobles prièrent le saint évêque de parcourir ces pays aux mœurs barbares et de ramener à l'esprit du christianisme qu'ils professaient leurs malheureux habitants.",
+        "Monté sur un âne et très-simplement vêtu, Arnoul accomplit heureusement cette mission et parvint à rétablir partout une réconciliation profonde et sincère, qui changea en peu de temps toute la face de la contrée."
       ],
-      "coherence_score": 0.8409459590911865,
+      "coherence_score": 0.7387407422065735,
       "atomic_facts": [
-        "les prêtres exilés se jetaient à ses pieds",
-        "ses plus grands ennemis entrerent",
-        "ses plus grands ennemis sont entiers",
-        "ses plus grands ennemis sont en grâce",
-        "Comme l'esprit de discorde régnait à cette époque dans les cantons de Bruges",
-        "Comme l'esprit de haine régnait à cette époque dans les cantons de Bruges",
-        "Comme l'esprit de vengeance régnait à cette époque dans les cantons de Bruges",
-        "Ces pays aux mœurs barbares étaient les cantons de Bruges, Ghistelles, Fumes, Thorhout et Oudenburg",
-        "Les malheureux habitants de ces cantons professaient l'esprit du christianisme",
-        "Le saint évêque ramena à l'esprit du christianisme les malheureux habitants de ces cantons",
-        "The count was in a violent rage",
-        "The count was"
+        "L'évêque était accompagné des dignitaires de l'Église de Térouanne que le comte avait maltraités et proscrits",
+        "L'évêque remettait à Eobert les lettres pontificales",
+        "Les prêtres exilés se jetaient à ses pieds",
+        "Le comte était en proie à une violente colère",
+        "La douce vertu de l'évêque emportait le comte",
+        "Ceux qu'il avait appelés ses plus grands ennemis rentraient entièrement en grâce",
+        "Le comte et ses nobles prirent le saint évêque pour parcourir les cantons de Bruges, Ghistelles, Fumes, Thorhout et Oudenburg.",
+        "Le saint évêque fut prié par le comte et ses nobles pour ramener à l'esprit du christianisme qu'ils professaient leurs malheureux habitants dans ces cantons.",
+        "Arnoul monta sur un âne.",
+        "Arnoul se mit à cheval."
       ],
-      "proposition_count": 12
+      "proposition_count": 10
     },
     {
-      "text": "Monté sur un âne Arnoul est monté sur un âne Arnoul est très-simplement vêtu Pénétrés de reconnaissance pour l'humble apôtre de la paix y mourut empty",
-      "start_char": 2377,
-      "end_char": 3201,
+      "text": "Le saint revint à Oudenburg. Après avoir repris l'administration du diocèse de Soissous, le saint revint à Oudenburg. Le saint retourna à Oudenburg. Le saint mourut à Oudenburg. On prépara la canonisation du bienheureux prélat le 20 novembre dans le concile de Beauvais. L'élévation des reliques eut lieu le 1er mai de l'année suivante. J.-J. est un nom de personne. Il n'est pas possible de déterminer la proposition à partir du seul nom De Snicl est un nom de lieu. Il n'est pas possible de déterminer la proposition à partir du seul nom",
+      "start_char": 2836,
+      "end_char": 3170,
       "sentences": [
-        "Monté sur un âne et très-simplement vêtu, Arnoul accomplit heureusement cette mission et parvint à rétablir partout une réconcilia- tion profonde et sincère, qui changea en peu de temps toute la face de la contrée.",
-        "Pénétrés de reconnaissance pour l'humble apôtre de la paix, les habitants d'Ouden- burg lui donnèrent une église que saint Ursinar avait bâtie dans leur bourgade, près de laquelle Arnoul fonda une abbaye de bénédictins qui devint une des plus considérables de la Flandre.",
-        "Après avoir repris,pendant quelque temps,l'adminis- tration du diocèse de Soissous, dont les désordres le désolaient, le saint revint à Oudenburg et y mourut.",
-        "."
+        "Après avoir repris,pendant quelque temps,l'administration du diocèse de Soissous, dont les désordres le désolaient, le saint revint à Oudenburg et y mourut.",
+        "On prépara la canonisation du bienheureux prélat dans leconciledeBeauvais, ennovembrell20, et l'élévation de ses reliques eut lieu le 1er mai de l'année suivante.",
+        "J.-J.",
+        "De Snicl"
       ],
-      "coherence_score": 0.932096540927887,
+      "coherence_score": 0.7148237824440002,
       "atomic_facts": [
-        "Monté sur un âne",
-        "Arnoul est monté sur un âne",
-        "Arnoul est très-simplement vêtu",
-        "Pénétrés de reconnaissance pour l'humble apôtre de la paix",
-        "y mourut",
-        "empty"
+        "Le saint revint à Oudenburg.",
+        "Après avoir repris l'administration du diocèse de Soissous, le saint revint à Oudenburg.",
+        "Le saint retourna à Oudenburg.",
+        "Le saint mourut à Oudenburg.",
+        "On prépara la canonisation du bienheureux prélat le 20 novembre dans le concile de Beauvais.",
+        "L'élévation des reliques eut lieu le 1er mai de l'année suivante.",
+        "J.-J. est un nom de personne.",
+        "Il n'est pas possible de déterminer la proposition à partir du seul nom",
+        "De Snicl est un nom de lieu.",
+        "Il n'est pas possible de déterminer la proposition à partir du seul nom"
       ],
-      "proposition_count": 6
+      "proposition_count": 10
+    },
+    {
+      "text": "Arnulphe est un nom de personne. Il n'est pas possible de déterminer la proposition à partir du seul nom",
+      "start_char": 3172,
+      "end_char": 3180,
+      "sentences": [
+        "ARNULPHE"
+      ],
+      "coherence_score": 1.0,
+      "atomic_facts": [
+        "Arnulphe est un nom de personne.",
+        "Il n'est pas possible de déterminer la proposition à partir du seul nom"
+      ],
+      "proposition_count": 2
     }
   ]
 }
