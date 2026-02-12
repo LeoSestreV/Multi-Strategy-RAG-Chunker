@@ -105,7 +105,7 @@ Groups **complete sentences** without ever splitting mid-sentence. Accumulates s
 
 ---
 
-### 5. Token-Based Chunking
+### 4. Token-Based Chunking
 
 **Folder:** `Strategy_Token/`
 
