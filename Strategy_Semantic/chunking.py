@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import SemanticChunkingConfig
 from preprocessing import Sentence
 
 
@@ -19,15 +22,11 @@ class SemanticChunker:
     """Groups sentences into semantically coherent chunks by detecting
     similarity drops between consecutive sentence embeddings."""
 
-    def __init__(self, similarity_threshold: float = 0.5,
-                 max_chunk_size: int = 1500,
-                 min_chunk_size: int = 100):
-        self.similarity_threshold = similarity_threshold
-        self.max_chunk_size = max_chunk_size
-        self.min_chunk_size = min_chunk_size
+    def __init__(self, config: SemanticChunkingConfig) -> None:
+        self.config = config
 
     def _compute_similarities(self, embeddings: list[np.ndarray]) -> list[float]:
-        similarities = []
+        similarities: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -37,16 +36,16 @@ class SemanticChunker:
         return similarities
 
     def _find_breakpoints(self, similarities: list[float]) -> list[int]:
-        breakpoints = []
+        breakpoints: list[int] = []
         for i, sim in enumerate(similarities):
-            if sim < self.similarity_threshold:
+            if sim < self.config.similarity_threshold:
                 breakpoints.append(i + 1)
         return breakpoints
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -70,7 +69,7 @@ class SemanticChunker:
         similarities = self._compute_similarities(embs)
         breakpoints = self._find_breakpoints(similarities)
 
-        groups = []
+        groups: list[tuple[list[Sentence], list[np.ndarray]]] = []
         start = 0
         for bp in breakpoints:
             groups.append((sents[start:bp], embs[start:bp]))
@@ -78,13 +77,14 @@ class SemanticChunker:
         groups.append((sents[start:], embs[start:]))
 
         # Merge small chunks
-        merged = []
-        buffer_sents, buffer_embs = [], []
+        merged: list[tuple[list[Sentence], list[np.ndarray]]] = []
+        buffer_sents: list[Sentence] = []
+        buffer_embs: list[np.ndarray] = []
         for grp_sents, grp_embs in groups:
             buffer_sents.extend(grp_sents)
             buffer_embs.extend(grp_embs)
             total_len = sum(len(s.text) for s in buffer_sents)
-            if total_len >= self.min_chunk_size:
+            if total_len >= self.config.min_chunk_size:
                 merged.append((list(buffer_sents), list(buffer_embs)))
                 buffer_sents, buffer_embs = [], []
         if buffer_sents:
@@ -97,17 +97,18 @@ class SemanticChunker:
                 merged.append((buffer_sents, buffer_embs))
 
         # Split oversized chunks
-        final_groups = []
+        final_groups: list[tuple[list[Sentence], list[np.ndarray]]] = []
         for grp_sents, grp_embs in merged:
             total_len = sum(len(s.text) for s in grp_sents)
-            if total_len > self.max_chunk_size and len(grp_sents) > 1:
-                mid = len(grp_sents) // 2
+            if total_len > self.config.max_chunk_size and len(grp_sents) > 1:
+                mid = int(len(grp_sents) * self.config.split_ratio)
+                mid = max(1, min(mid, len(grp_sents) - 1))
                 final_groups.append((grp_sents[:mid], grp_embs[:mid]))
                 final_groups.append((grp_sents[mid:], grp_embs[mid:]))
             else:
                 final_groups.append((grp_sents, grp_embs))
 
-        chunks = []
+        chunks: list[Chunk] = []
         for grp_sents, grp_embs in final_groups:
             text = " ".join(s.text for s in grp_sents)
             chunks.append(Chunk(

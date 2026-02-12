@@ -9,6 +9,7 @@ class SentenceChunkingConfig:
     max_sentences_per_chunk: int = 8
     max_chunk_size: int = 1500
     min_chunk_size: int = 100
+    default_coherence_score: float = 1.0
     input_dir: str = "../BioTxt/"
     output_dir: str = "./output/"
     max_workers: int = 4

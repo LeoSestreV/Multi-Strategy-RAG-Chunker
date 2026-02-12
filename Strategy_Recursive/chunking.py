@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import RecursiveChunkingConfig
 from preprocessing import Sentence
 
 
@@ -20,44 +23,38 @@ class RecursiveChunker:
     """Splits text hierarchically using a cascade of separators:
     paragraphs -> sentences -> words, until each chunk fits the target size."""
 
-    def __init__(self, target_chunk_size: int = 1000,
-                 max_chunk_size: int = 1500,
-                 min_chunk_size: int = 100,
-                 separators: tuple = ("\n\n", "\n", ". ", " ")):
-        self.target_chunk_size = target_chunk_size
-        self.max_chunk_size = max_chunk_size
-        self.min_chunk_size = min_chunk_size
-        self.separators = separators
+    def __init__(self, config: RecursiveChunkingConfig) -> None:
+        self.config = config
 
     def _recursive_split(self, text: str, depth: int = 0) -> list[tuple[str, int]]:
-        if len(text) <= self.target_chunk_size:
+        if len(text) <= self.config.target_chunk_size:
             return [(text, depth)]
 
-        if depth >= len(self.separators):
+        if depth >= len(self.config.separators):
             return [(text, depth)]
 
-        sep = self.separators[depth]
+        sep = self.config.separators[depth]
         parts = text.split(sep)
 
         if len(parts) == 1:
             return self._recursive_split(text, depth + 1)
 
-        results = []
+        results: list[tuple[str, int]] = []
         current = ""
         for part in parts:
             candidate = current + sep + part if current else part
-            if len(candidate) <= self.target_chunk_size:
+            if len(candidate) <= self.config.target_chunk_size:
                 current = candidate
             else:
                 if current:
-                    if len(current) <= self.target_chunk_size:
+                    if len(current) <= self.config.target_chunk_size:
                         results.append((current, depth))
                     else:
                         results.extend(self._recursive_split(current, depth + 1))
                 current = part
 
         if current:
-            if len(current) <= self.target_chunk_size:
+            if len(current) <= self.config.target_chunk_size:
                 results.append((current, depth))
             else:
                 results.extend(self._recursive_split(current, depth + 1))
@@ -66,8 +63,8 @@ class RecursiveChunker:
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -85,7 +82,7 @@ class RecursiveChunker:
         splits = self._recursive_split(full_text)
 
         # Merge small fragments
-        merged = []
+        merged: list[tuple[str, int]] = []
         buffer_text = ""
         buffer_depth = 0
         for text, depth in splits:
@@ -95,10 +92,10 @@ class RecursiveChunker:
                 candidate = text
                 buffer_depth = depth
 
-            if len(candidate) < self.min_chunk_size:
+            if len(candidate) < self.config.min_chunk_size:
                 buffer_text = candidate
             else:
-                if buffer_text and len(buffer_text) >= self.min_chunk_size:
+                if buffer_text and len(buffer_text) >= self.config.min_chunk_size:
                     merged.append((buffer_text, buffer_depth))
                     buffer_text = text
                     buffer_depth = depth
@@ -113,8 +110,10 @@ class RecursiveChunker:
                 merged.append((buffer_text, buffer_depth))
 
         # Build chunk objects with position tracking
-        all_embeddings = {s.text: e for s, e in zip(sentences, embeddings) if e is not None}
-        chunks = []
+        all_embeddings: dict[str, np.ndarray] = {
+            s.text: e for s, e in zip(sentences, embeddings) if e is not None
+        }
+        chunks: list[Chunk] = []
         char_offset = 0
 
         for chunk_text, depth in merged:
@@ -126,8 +125,8 @@ class RecursiveChunker:
             end = start + len(chunk_text)
 
             # Find matching sentence embeddings for coherence
-            chunk_embs = []
-            chunk_sents = []
+            chunk_embs: list[np.ndarray] = []
+            chunk_sents: list[str] = []
             for sent in sentences:
                 if sent.text in chunk_text:
                     chunk_sents.append(sent.text)

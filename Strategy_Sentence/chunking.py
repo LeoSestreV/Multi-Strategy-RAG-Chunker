@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import SentenceChunkingConfig
 from preprocessing import Sentence
 
 
@@ -20,17 +23,13 @@ class SentenceChunker:
     """Groups complete sentences into chunks, never splitting mid-sentence.
     Accumulates sentences until reaching the size or count limit."""
 
-    def __init__(self, max_sentences_per_chunk: int = 8,
-                 max_chunk_size: int = 1500,
-                 min_chunk_size: int = 100):
-        self.max_sentences_per_chunk = max_sentences_per_chunk
-        self.max_chunk_size = max_chunk_size
-        self.min_chunk_size = min_chunk_size
+    def __init__(self, config: SentenceChunkingConfig) -> None:
+        self.config = config
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -51,17 +50,17 @@ class SentenceChunker:
         sents, embs = zip(*valid)
         sents, embs = list(sents), list(embs)
 
-        groups = []
-        current_sents = []
-        current_embs = []
+        groups: list[tuple[list[Sentence], list[np.ndarray]]] = []
+        current_sents: list[Sentence] = []
+        current_embs: list[np.ndarray] = []
         current_len = 0
 
         for sent, emb in zip(sents, embs):
             candidate_len = current_len + len(sent.text) + (1 if current_sents else 0)
 
             if current_sents and (
-                candidate_len > self.max_chunk_size or
-                len(current_sents) >= self.max_sentences_per_chunk
+                candidate_len > self.config.max_chunk_size or
+                len(current_sents) >= self.config.max_sentences_per_chunk
             ):
                 groups.append((list(current_sents), list(current_embs)))
                 current_sents = []
@@ -78,14 +77,14 @@ class SentenceChunker:
         # Merge small trailing chunks
         if len(groups) > 1:
             last_text = " ".join(s.text for s in groups[-1][0])
-            if len(last_text) < self.min_chunk_size:
+            if len(last_text) < self.config.min_chunk_size:
                 prev_s, prev_e = groups[-2]
                 prev_s.extend(groups[-1][0])
                 prev_e.extend(groups[-1][1])
                 groups[-2] = (prev_s, prev_e)
                 groups.pop()
 
-        chunks = []
+        chunks: list[Chunk] = []
         for grp_sents, grp_embs in groups:
             text = " ".join(s.text for s in grp_sents)
             chunks.append(Chunk(

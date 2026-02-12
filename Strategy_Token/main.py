@@ -17,12 +17,7 @@ class Pipeline:
             base_url=self.config.ollama_base_url,
             max_workers=self.config.max_workers
         )
-        self.chunker = TokenChunker(
-            max_tokens_per_chunk=self.config.max_tokens_per_chunk,
-            overlap_tokens=self.config.overlap_tokens,
-            encoding_name=self.config.encoding_name,
-            min_chunk_size=self.config.min_chunk_size
-        )
+        self.chunker = TokenChunker(self.config)
 
     def run(self, raw_text: str) -> list[Chunk]:
         sentences = self.preprocessor.process(raw_text)

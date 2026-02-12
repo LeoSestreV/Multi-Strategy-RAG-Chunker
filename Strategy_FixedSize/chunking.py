@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import FixedSizeChunkingConfig
 from preprocessing import Sentence
 
 
@@ -20,10 +23,8 @@ class FixedSizeChunker:
     """Divides text mathematically by character count, always breaking
     at the last space boundary to avoid splitting words."""
 
-    def __init__(self, chunk_size: int = 800,
-                 min_chunk_size: int = 100):
-        self.chunk_size = chunk_size
-        self.min_chunk_size = min_chunk_size
+    def __init__(self, config: FixedSizeChunkingConfig) -> None:
+        self.config = config
 
     def _split_at_space(self, text: str, max_len: int) -> tuple[str, str]:
         """Split text at the last space before max_len."""
@@ -38,8 +39,8 @@ class FixedSizeChunker:
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -56,12 +57,12 @@ class FixedSizeChunker:
         full_text = " ".join(s.text for s in sentences)
 
         # Split text into fixed-size pieces at word boundaries
-        raw_chunks = []
+        raw_chunks: list[tuple[str, int, int]] = []
         remaining = full_text
         offset = 0
 
         while remaining:
-            piece, remaining = self._split_at_space(remaining, self.chunk_size)
+            piece, remaining = self._split_at_space(remaining, self.config.chunk_size)
             if piece:
                 raw_chunks.append((piece, offset, offset + len(piece)))
                 offset += len(piece) + 1
@@ -69,19 +70,21 @@ class FixedSizeChunker:
         # Merge small trailing chunk
         if len(raw_chunks) > 1:
             last_text, last_start, last_end = raw_chunks[-1]
-            if len(last_text) < self.min_chunk_size:
+            if len(last_text) < self.config.min_chunk_size:
                 prev_text, prev_start, prev_end = raw_chunks[-2]
                 raw_chunks[-2] = (prev_text + " " + last_text, prev_start, last_end)
                 raw_chunks.pop()
 
         # Map sentences to chunks and compute coherence
-        emb_map = {s.text: e for s, e in zip(sentences, embeddings) if e is not None}
-        chunks = []
+        emb_map: dict[str, np.ndarray] = {
+            s.text: e for s, e in zip(sentences, embeddings) if e is not None
+        }
+        chunks: list[Chunk] = []
 
         for chunk_text, start, end in raw_chunks:
             # Find sentences contained in this chunk
-            chunk_sents = []
-            chunk_embs = []
+            chunk_sents: list[str] = []
+            chunk_embs: list[np.ndarray] = []
             for sent in sentences:
                 if sent.text in chunk_text:
                     chunk_sents.append(sent.text)

@@ -10,6 +10,7 @@ class RecursiveChunkingConfig:
     max_chunk_size: int = 1500
     min_chunk_size: int = 100
     separators: tuple = ("\n\n", "\n", ". ", " ")
+    default_coherence_score: float = 1.0
     input_dir: str = "../BioTxt/"
     output_dir: str = "./output/"
     max_workers: int = 4
