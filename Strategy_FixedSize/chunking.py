@@ -20,22 +20,38 @@ class Chunk:
 
 
 class FixedSizeChunker:
-    """Divides text mathematically by character count, always breaking
-    at the last space boundary to avoid splitting words."""
+    """Divides text by character count, breaking at sentence boundaries
+    (last strong punctuation . ! ? before the size limit) and applying
+    overlap to preserve context between consecutive chunks."""
+
+    OVERLAP_RATIO = 0.1  # 10% of chunk_size used as overlap
 
     def __init__(self, config: FixedSizeChunkingConfig) -> None:
         self.config = config
 
-    def _split_at_space(self, text: str, max_len: int) -> tuple[str, str]:
-        """Split text at the last space before max_len."""
+    def _find_sentence_break(self, text: str, max_len: int) -> int:
+        """Find the best split position at a sentence boundary before max_len."""
         if len(text) <= max_len:
-            return text, ""
+            return len(text)
 
-        split_pos = text.rfind(" ", 0, max_len)
-        if split_pos == -1:
-            split_pos = max_len
+        # Search backwards from max_len for the last sentence-ending punctuation
+        search_region = text[:max_len]
+        best_pos = -1
+        for punct in '.!?':
+            pos = search_region.rfind(punct)
+            if pos > best_pos:
+                best_pos = pos
 
-        return text[:split_pos].rstrip(), text[split_pos:].lstrip()
+        # If found a sentence boundary, split right after the punctuation
+        if best_pos > 0:
+            return best_pos + 1
+
+        # Fallback: split at last space to avoid breaking words
+        space_pos = text.rfind(" ", 0, max_len)
+        if space_pos > 0:
+            return space_pos
+
+        return max_len
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
@@ -55,17 +71,32 @@ class FixedSizeChunker:
             return []
 
         full_text = " ".join(s.text for s in sentences)
+        overlap_size = int(self.config.chunk_size * self.OVERLAP_RATIO)
 
-        # Split text into fixed-size pieces at word boundaries
+        # Split text into pieces at sentence boundaries with overlap
         raw_chunks: list[tuple[str, int, int]] = []
-        remaining = full_text
-        offset = 0
+        pos = 0
 
-        while remaining:
-            piece, remaining = self._split_at_space(remaining, self.config.chunk_size)
+        while pos < len(full_text):
+            remaining = full_text[pos:]
+            if len(remaining) <= self.config.chunk_size:
+                raw_chunks.append((remaining.strip(), pos, pos + len(remaining)))
+                break
+
+            split_at = self._find_sentence_break(remaining, self.config.chunk_size)
+            piece = remaining[:split_at].strip()
             if piece:
-                raw_chunks.append((piece, offset, offset + len(piece)))
-                offset += len(piece) + 1
+                raw_chunks.append((piece, pos, pos + split_at))
+
+            # Move forward, but step back by overlap_size for context continuity
+            next_pos = pos + split_at
+            if overlap_size > 0 and next_pos < len(full_text):
+                next_pos = max(pos + 1, next_pos - overlap_size)
+                # Adjust to avoid splitting mid-word
+                space = full_text.rfind(" ", pos + 1, next_pos + 1)
+                if space > pos:
+                    next_pos = space + 1
+            pos = next_pos
 
         # Merge small trailing chunk
         if len(raw_chunks) > 1:
@@ -82,7 +113,6 @@ class FixedSizeChunker:
         chunks: list[Chunk] = []
 
         for chunk_text, start, end in raw_chunks:
-            # Find sentences contained in this chunk
             chunk_sents: list[str] = []
             chunk_embs: list[np.ndarray] = []
             for sent in sentences:

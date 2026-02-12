@@ -7,7 +7,7 @@ class TokenChunkingConfig:
     ollama_base_url: str = "http://localhost:11434"
     spacy_model: str = "fr_core_news_lg"
     max_tokens_per_chunk: int = 256
-    overlap_tokens: int = 20
+    overlap_tokens: int = 50
     encoding_name: str = "cl100k_base"
     max_chunk_size: int = 1500
     min_chunk_size: int = 100

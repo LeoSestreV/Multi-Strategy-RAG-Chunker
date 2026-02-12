@@ -26,6 +26,23 @@ class Pipeline:
         chunks = self.chunker.chunk(sentences, embeddings)
         return chunks
 
+    @staticmethod
+    def _clean_chunk_dict(d: dict) -> dict:
+        """Remove empty or trivial entries from the sentences and atomic_facts lists."""
+        if "sentences" in d:
+            d["sentences"] = [
+                s for s in d["sentences"]
+                if isinstance(s, str) and len(s.strip()) > 1
+                and len(s.strip().strip('.,;:!?-\u2014\u2013()[]"\' ')) > 1
+            ]
+        if "atomic_facts" in d:
+            d["atomic_facts"] = [
+                f for f in d["atomic_facts"]
+                if isinstance(f, str) and len(f.strip()) > 10
+            ]
+            d["proposition_count"] = len(d["atomic_facts"])
+        return d
+
     def run_to_dict(self, raw_text: str) -> list[dict]:
         chunks = self.run(raw_text)
-        return [asdict(c) for c in chunks]
+        return [self._clean_chunk_dict(asdict(c)) for c in chunks]
