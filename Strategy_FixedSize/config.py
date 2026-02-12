@@ -8,6 +8,7 @@ class FixedSizeChunkingConfig:
     spacy_model: str = "fr_core_news_lg"
     chunk_size: int = 800
     min_chunk_size: int = 100
+    default_coherence_score: float = 1.0
     input_dir: str = "../BioTxt/"
     output_dir: str = "./output/"
     max_workers: int = 4

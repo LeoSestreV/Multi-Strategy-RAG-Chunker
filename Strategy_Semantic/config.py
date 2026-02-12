@@ -10,6 +10,8 @@ class SemanticChunkingConfig:
     similarity_threshold: float = 0.5
     max_chunk_size: int = 1500
     min_chunk_size: int = 100
+    split_ratio: float = 0.5
+    default_coherence_score: float = 1.0
     input_dir: str = "../BioTxt/"
     output_dir: str = "./output/"
     max_workers: int = 4

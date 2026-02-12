@@ -17,10 +17,7 @@ class Pipeline:
             base_url=self.config.ollama_base_url,
             max_workers=self.config.max_workers
         )
-        self.chunker = FixedSizeChunker(
-            chunk_size=self.config.chunk_size,
-            min_chunk_size=self.config.min_chunk_size
-        )
+        self.chunker = FixedSizeChunker(self.config)
 
     def run(self, raw_text: str) -> list[Chunk]:
         sentences = self.preprocessor.process(raw_text)

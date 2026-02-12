@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -6,6 +8,7 @@ from dataclasses import dataclass, field
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import PropositionChunkingConfig
 from preprocessing import Sentence
 
 
@@ -31,20 +34,8 @@ class PropositionChunker:
     """Decomposes sentences into atomic propositions using an LLM,
     then groups semantically similar propositions into chunks."""
 
-    def __init__(self, llm_model: str = "mistral",
-                 ollama_base_url: str = "http://localhost:11434",
-                 max_propositions_per_chunk: int = 10,
-                 similarity_threshold: float = 0.6,
-                 max_chunk_size: int = 1500,
-                 min_chunk_size: int = 100,
-                 max_workers: int = 4):
-        self.llm_model = llm_model
-        self.ollama_base_url = ollama_base_url.rstrip("/")
-        self.max_propositions = max_propositions_per_chunk
-        self.similarity_threshold = similarity_threshold
-        self.max_chunk_size = max_chunk_size
-        self.min_chunk_size = min_chunk_size
-        self.max_workers = max_workers
+    def __init__(self, config: PropositionChunkingConfig) -> None:
+        self.config = config
 
     def _extract_propositions(self, sentence: Sentence) -> list[Proposition]:
         """Use Ollama LLM to decompose a sentence into atomic facts."""
@@ -56,15 +47,17 @@ class PropositionChunker:
             "JSON array:"
         )
 
+        ollama_base_url = self.config.ollama_base_url.rstrip("/")
+
         payload = json.dumps({
-            "model": self.llm_model,
+            "model": self.config.llm_model,
             "prompt": prompt,
             "stream": False,
             "options": {"temperature": 0.1}
         }).encode("utf-8")
 
         req = urllib.request.Request(
-            f"{self.ollama_base_url}/api/generate",
+            f"{ollama_base_url}/api/generate",
             data=payload,
             headers={"Content-Type": "application/json"}
         )
@@ -94,8 +87,8 @@ class PropositionChunker:
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -110,10 +103,10 @@ class PropositionChunker:
             return []
 
         # Extract propositions from all sentences in parallel
-        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+        with ThreadPoolExecutor(max_workers=self.config.max_workers) as executor:
             prop_lists = list(executor.map(self._extract_propositions, sentences))
 
-        all_propositions = []
+        all_propositions: list[Proposition] = []
         for props in prop_lists:
             all_propositions.extend(props)
 
@@ -122,9 +115,10 @@ class PropositionChunker:
 
         # Get embeddings for each proposition (already threaded via EmbeddingClient)
         from embeddings import EmbeddingClient
+        ollama_base_url = self.config.ollama_base_url.rstrip("/")
         emb_client = EmbeddingClient(
-            base_url=self.ollama_base_url,
-            max_workers=self.max_workers
+            base_url=ollama_base_url,
+            max_workers=self.config.max_workers
         )
         prop_embeddings = emb_client.get_embeddings_batch(
             [p.text for p in all_propositions]
@@ -138,20 +132,20 @@ class PropositionChunker:
             return []
 
         # Group propositions by semantic similarity (greedy clustering)
-        groups = []
-        used = set()
+        groups: list[list[Proposition]] = []
+        used: set[int] = set()
 
         for i, prop in enumerate(valid_props):
             if i in used:
                 continue
 
-            group = [prop]
+            group: list[Proposition] = [prop]
             used.add(i)
 
             for j in range(i + 1, len(valid_props)):
                 if j in used:
                     continue
-                if len(group) >= self.max_propositions:
+                if len(group) >= self.config.max_propositions_per_chunk:
                     break
 
                 # Compare with group centroid
@@ -162,16 +156,18 @@ class PropositionChunker:
                     valid_props[j].embedding.reshape(1, -1)
                 )[0][0]
 
-                if sim >= self.similarity_threshold:
+                if sim >= self.config.similarity_threshold:
                     group.append(valid_props[j])
                     used.add(j)
 
             groups.append(group)
 
         # Build chunks from proposition groups
-        chunks = []
-        sent_map = {s.index: s for s in sentences}
-        emb_map = {s.index: e for s, e in zip(sentences, embeddings) if e is not None}
+        chunks: list[Chunk] = []
+        sent_map: dict[int, Sentence] = {s.index: s for s in sentences}
+        emb_map: dict[int, np.ndarray] = {
+            s.index: e for s, e in zip(sentences, embeddings) if e is not None
+        }
 
         for group in groups:
             facts = [p.text for p in group]
@@ -201,9 +197,9 @@ class PropositionChunker:
 
         # Merge small chunks
         if len(chunks) > 1:
-            merged = [chunks[0]]
+            merged: list[Chunk] = [chunks[0]]
             for c in chunks[1:]:
-                if len(c.text) < self.min_chunk_size:
+                if len(c.text) < self.config.min_chunk_size:
                     prev = merged[-1]
                     merged[-1] = Chunk(
                         text=prev.text + " " + c.text,

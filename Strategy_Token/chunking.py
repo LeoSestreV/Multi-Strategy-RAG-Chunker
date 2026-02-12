@@ -1,9 +1,12 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 import tiktoken
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+from config import TokenChunkingConfig
 from preprocessing import Sentence
 
 
@@ -21,22 +24,17 @@ class TokenChunker:
     """Splits text into chunks that respect token limits using tiktoken.
     Sentences are accumulated until adding the next would exceed the token budget."""
 
-    def __init__(self, max_tokens_per_chunk: int = 256,
-                 overlap_tokens: int = 20,
-                 encoding_name: str = "cl100k_base",
-                 min_chunk_size: int = 100):
-        self.max_tokens = max_tokens_per_chunk
-        self.overlap_tokens = overlap_tokens
-        self.min_chunk_size = min_chunk_size
-        self.encoder = tiktoken.get_encoding(encoding_name)
+    def __init__(self, config: TokenChunkingConfig) -> None:
+        self.config = config
+        self.encoder = tiktoken.get_encoding(config.encoding_name)
 
     def _count_tokens(self, text: str) -> int:
         return len(self.encoder.encode(text))
 
     def _compute_coherence(self, embeddings: list[np.ndarray]) -> float:
         if len(embeddings) < 2:
-            return 1.0
-        sims = []
+            return self.config.default_coherence_score
+        sims: list[float] = []
         for i in range(len(embeddings) - 1):
             sim = cosine_similarity(
                 embeddings[i].reshape(1, -1),
@@ -57,24 +55,24 @@ class TokenChunker:
         sents, embs = zip(*valid)
         sents, embs = list(sents), list(embs)
 
-        groups = []
-        current_sents = []
-        current_embs = []
+        groups: list[tuple[list[Sentence], list[np.ndarray], int]] = []
+        current_sents: list[Sentence] = []
+        current_embs: list[np.ndarray] = []
         current_tokens = 0
 
         for sent, emb in zip(sents, embs):
             sent_tokens = self._count_tokens(sent.text)
 
-            if current_sents and current_tokens + sent_tokens > self.max_tokens:
+            if current_sents and current_tokens + sent_tokens > self.config.max_tokens_per_chunk:
                 groups.append((list(current_sents), list(current_embs), current_tokens))
 
                 # Calculate overlap: take trailing sentences that fit in overlap budget
-                overlap_sents = []
-                overlap_embs = []
+                overlap_sents: list[Sentence] = []
+                overlap_embs: list[np.ndarray] = []
                 overlap_tok = 0
                 for s, e in reversed(list(zip(current_sents, current_embs))):
                     s_tok = self._count_tokens(s.text)
-                    if overlap_tok + s_tok > self.overlap_tokens:
+                    if overlap_tok + s_tok > self.config.overlap_tokens:
                         break
                     overlap_sents.insert(0, s)
                     overlap_embs.insert(0, e)
@@ -94,7 +92,7 @@ class TokenChunker:
         # Merge small trailing chunks
         if len(groups) > 1:
             last_text = " ".join(s.text for s in groups[-1][0])
-            if len(last_text) < self.min_chunk_size:
+            if len(last_text) < self.config.min_chunk_size:
                 prev_s, prev_e, prev_t = groups[-2]
                 last_s, last_e, last_t = groups[-1]
                 prev_s.extend(last_s)
@@ -102,7 +100,7 @@ class TokenChunker:
                 groups[-2] = (prev_s, prev_e, prev_t + last_t)
                 groups.pop()
 
-        chunks = []
+        chunks: list[Chunk] = []
         for grp_sents, grp_embs, tok_count in groups:
             text = " ".join(s.text for s in grp_sents)
             chunks.append(Chunk(
