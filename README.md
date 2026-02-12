@@ -105,29 +105,6 @@ Groups **complete sentences** without ever splitting mid-sentence. Accumulates s
 
 ---
 
-### 4. Document-Based Chunking
-
-**Folder:** `Strategy_Document/`
-
-Detects **logical document boundaries** using layout heuristics: section titles, numbered headings, bibliographic signatures, and paragraph breaks. Chunks correspond to structural sections of the document.
-
-**How it works:**
-1. Scan each sentence against regex patterns for:
-   - **Section titles:** capitalized phrases, numbered headings (`1.`, `I.`), markdown headers
-   - **End signatures:** "Bibliographie", "Références", "Publications", etc.
-2. When a title or signature is detected, flush the current section as a chunk
-3. Split oversized sections at the midpoint
-4. Merge undersized sections with their neighbors
-
-**Key parameters:**
-- `section_patterns` — list of regex patterns for title detection
-- `end_signature_patterns` — list of regex patterns for bibliography/end markers
-- `max_chunk_size` (default: 2000 chars)
-
-**Output fields:** `text`, `start_char`, `end_char`, `sentences`, `coherence_score`, `section_title`, `is_end_section`
-
----
-
 ### 5. Token-Based Chunking
 
 **Folder:** `Strategy_Token/`
@@ -149,28 +126,7 @@ Uses the **tiktoken** tokenizer (`cl100k_base` encoding) to ensure each chunk st
 
 ---
 
-### 6. Sliding Window Chunking
-
-**Folder:** `Strategy_SlidingWindow/`
-
-A **fixed-size window** slides across the text with a configurable **overlap ratio** (10–20%). Each chunk shares overlapping sentences with the previous one, ensuring no context is lost at boundaries.
-
-**How it works:**
-1. Define `window_size` (characters) and `overlap_ratio`
-2. Compute `step_size = window_size × (1 - overlap_ratio)`
-3. Fill each window with sentences until reaching `window_size`
-4. Advance the start position by `step_size` characters (sentence-aligned)
-5. Track actual overlap characters between consecutive windows
-
-**Key parameters:**
-- `window_size` (default: 1000 chars)
-- `overlap_ratio` (default: 0.15, clamped to [0.1, 0.2])
-
-**Output fields:** `text`, `start_char`, `end_char`, `sentences`, `coherence_score`, `overlap_with_previous`, `window_index`
-
----
-
-### 7. Proposition-Based Chunking
+### 5. Proposition-Based Chunking
 
 **Folder:** `Strategy_Proposition/`
 
@@ -194,7 +150,7 @@ The `atomic_facts` list contains each individual extracted proposition, enabling
 
 ---
 
-### 8. Fixed-Size Chunking
+### 6. Fixed-Size Chunking
 
 **Folder:** `Strategy_FixedSize/`
 
