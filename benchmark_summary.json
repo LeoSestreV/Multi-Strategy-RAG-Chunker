@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-02-16T09:54:12.949764",
+  "input_dir": "/home/user/Multi-Strategy-RAG-Chunker/BioTxt",
+  "strategies": [
+    {
+      "strategy": "Strategy_FixedSize",
+      "strategy_label": "fixed_size_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "chunk_size": 800,
+        "min_chunk_size": 100
+      },
+      "statistics": {
+        "total_chunks": 24,
+        "max_chunk_chars": 789,
+        "min_chunk_chars": 446,
+        "avg_chunk_chars": 700.0,
+        "avg_sentences_per_chunk": 11.71,
+        "avg_words_per_chunk": 116.42,
+        "avg_tokens_per_chunk": 150.92,
+        "avg_coherence_score": 0.6407,
+        "avg_proposition_count": null,
+        "execution_time_s": null
+      }
+    },
+    {
+      "strategy": "Strategy_Proposition",
+      "strategy_label": "proposition_based_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "llm_model": "mistral",
+        "max_propositions_per_chunk": 10,
+        "similarity_threshold": 0.6
+      },
+      "statistics": {
+        "total_chunks": 35,
+        "max_chunk_chars": 1039,
+        "min_chunk_chars": 10,
+        "avg_chunk_chars": 547.7,
+        "avg_sentences_per_chunk": 5.8,
+        "avg_words_per_chunk": 92.83,
+        "avg_tokens_per_chunk": 120.14,
+        "avg_coherence_score": 0.6687,
+        "avg_proposition_count": 8.94,
+        "execution_time_s": null
+      }
+    },
+    {
+      "strategy": "Strategy_Recursive",
+      "strategy_label": "recursive_character_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "target_chunk_size": 1000,
+        "max_chunk_size": 1500,
+        "min_chunk_size": 100,
+        "separators": [
+          "\n\n",
+          "\n",
+          ". ",
+          " "
+        ]
+      },
+      "statistics": {
+        "total_chunks": 18,
+        "max_chunk_chars": 999,
+        "min_chunk_chars": 322,
+        "avg_chunk_chars": 835.1,
+        "avg_sentences_per_chunk": 12.89,
+        "avg_words_per_chunk": 138.78,
+        "avg_tokens_per_chunk": 179.94,
+        "avg_coherence_score": 0.64,
+        "avg_proposition_count": null,
+        "execution_time_s": null
+      }
+    },
+    {
+      "strategy": "Strategy_Semantic",
+      "strategy_label": "semantic_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "similarity_threshold": 0.5,
+        "max_chunk_size": 1500,
+        "min_chunk_size": 100
+      },
+      "statistics": {
+        "total_chunks": 27,
+        "max_chunk_chars": 2356,
+        "min_chunk_chars": 109,
+        "avg_chunk_chars": 564.6,
+        "avg_sentences_per_chunk": 8.96,
+        "avg_words_per_chunk": 95.63,
+        "avg_tokens_per_chunk": 123.96,
+        "avg_coherence_score": 0.5908,
+        "avg_proposition_count": null,
+        "execution_time_s": null
+      }
+    },
+    {
+      "strategy": "Strategy_Sentence",
+      "strategy_label": "sentence_based_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "max_sentences_per_chunk": 8,
+        "max_chunk_size": 1500,
+        "min_chunk_size": 100
+      },
+      "statistics": {
+        "total_chunks": 31,
+        "max_chunk_chars": 1353,
+        "min_chunk_chars": 33,
+        "avg_chunk_chars": 491.6,
+        "avg_sentences_per_chunk": 7.81,
+        "avg_words_per_chunk": 83.29,
+        "avg_tokens_per_chunk": 107.81,
+        "avg_coherence_score": 0.5897,
+        "avg_proposition_count": null,
+        "execution_time_s": null
+      }
+    },
+    {
+      "strategy": "Strategy_Token",
+      "strategy_label": "token_based_chunking",
+      "config": {
+        "embedding_model": "nomic-embed-text",
+        "max_tokens_per_chunk": 256,
+        "overlap_tokens": 50,
+        "encoding_name": "cl100k_base"
+      },
+      "statistics": {
+        "total_chunks": 23,
+        "max_chunk_chars": 874,
+        "min_chunk_chars": 357,
+        "avg_chunk_chars": 717.4,
+        "avg_sentences_per_chunk": 10.83,
+        "avg_words_per_chunk": 119.35,
+        "avg_tokens_per_chunk": 154.7,
+        "avg_coherence_score": 0.6465,
+        "avg_proposition_count": null,
+        "execution_time_s": null
+      }
+    }
+  ]
+}
