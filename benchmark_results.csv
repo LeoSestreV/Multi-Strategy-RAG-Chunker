@@ -1,0 +1,7 @@
+strategy,total_chunks,max_chunk_chars,min_chunk_chars,avg_chunk_chars,avg_sentences_per_chunk,avg_words_per_chunk,avg_tokens_per_chunk,avg_coherence_score,avg_proposition_count,execution_time_s
+Strategy_FixedSize,24,789,446,700.0,11.71,116.42,150.92,0.6407,,
+Strategy_Proposition,35,1039,10,547.7,5.8,92.83,120.14,0.6687,8.94,
+Strategy_Recursive,18,999,322,835.1,12.89,138.78,179.94,0.64,,
+Strategy_Semantic,27,2356,109,564.6,8.96,95.63,123.96,0.5908,,
+Strategy_Sentence,31,1353,33,491.6,7.81,83.29,107.81,0.5897,,
+Strategy_Token,23,874,357,717.4,10.83,119.35,154.7,0.6465,,
